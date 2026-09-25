@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kjdid.com/#website","url":"https://kjdid.com/","name":"科技岛","description":"美区港区 Apple ID、小火箭共享账号与免费海外苹果 ID 获取平台","inLanguage":"zh-CN","potentialAction":{"@type":"SearchAction","target":"https://kjdid.com/?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://kjdid.com/#webpage","url":"https://kjdid.com/","name":"美区港区 Apple ID 与小火箭共享账号 | 免费苹果ID实时更新 - 科技岛","isPartOf":{"@id":"https://kjdid.com/#website"},"description":"【科技岛 kjdid.com】提供免费美区港区 Apple ID 与小火箭共享账号！实时更新美区/港区/日区/台区等 iOS 账号及 Shadowrocket 账号，支持 2FA 验证码在线提取。","inLanguage":"zh-CN"},{"@type":"FAQPage","@id":"https://kjdid.com/#faq","mainEntity":[{"@type":"Question","name":"科技岛提供的美区港区 Apple ID 是免费的吗？","acceptedAnswer":{"@type":"Answer","text":"是的，科技岛（kjdid.com）每日实时更新美区、港区、日区、台区等公共共享 Apple ID，全站免费开放使用。"}},{"@type":"Question","name":"如何获取小火箭（Shadowrocket）共享账号？","acceptedAnswer":{"@type":"Answer","text":"您可以在科技岛平台直接获取已购买小火箭应用（Shadowrocket）的海外 Apple ID，登录 App Store 即可免费下载。"}},{"@type":"Question","name":"共享苹果账号提示需要 2FA 验证码怎么办？","acceptedAnswer":{"@type":"Answer","text":"科技岛提供配套的在线 2FA 验证码提取工具，输入账号对应的密钥即可实时获取 6 位双重认证验证码。"}}]},{"@type":"Organization","@id":"https://kjdid.com/#organization","name":"科技岛","url":"https://kjdid.com/","logo":{"@type":"ImageObject","url":"https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"}}]}</script>
 <style>
-/* 🌟 1. 彻底将 Gmeek 默认的旧标题、副标题、正文多余文本在前台物理隐藏 */
+/* 🌟 1. 彻底清爽前台：将 Gmeek 默认的旧标题、副标题、正文多余文本全部物理隐藏 */
 .title-left, .blogTitle, #subTitle, .subTitle, #subtitle, .subtitle, [class*="subTitle"], [id*="subTitle"], .site-subtitle {
     display: none !important;
     visibility: hidden !important;
@@ -205,6 +205,16 @@ h1.pro-brand-title, .pro-brand-title {
     window.__PRO_THEME_INITED__ = true;
 
     function cleanUI() {
+        // 🌟 1. 精准清除正文顶部由副标题生成的裸露文本节点
+        var contentDiv = document.getElementById('content');
+        if (contentDiv) {
+            contentDiv.childNodes.forEach(function(node) {
+                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
+                    node.remove();
+                }
+            });
+        }
+
         var subEls = document.querySelectorAll('#subTitle, .subTitle, #subtitle, .subtitle, [class*="subTitle"], [id*="subTitle"]');
         subEls.forEach(function(el) {
             el.style.setProperty('display', 'none', 'important');
@@ -212,7 +222,7 @@ h1.pro-brand-title, .pro-brand-title {
             el.style.setProperty('overflow', 'hidden', 'important');
         });
         
-        // 🌟 仅在页面代码底层挂载一个合规的结构化 H1 标签供搜索引擎抓取，绝对不在前台可视区域展示
+        // 🌟 2. 在代码底层挂载合规的结构化 H1 标签供搜索引擎抓取，前台绝对不可见
         if (!document.getElementById('seoH1Tag')) {
             var h1 = document.createElement('h1');
             h1.id = 'seoH1Tag';
