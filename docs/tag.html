@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://kjdid.com/#website","url":"https://kjdid.com/","name":"科技岛","description":"美区港区 Apple ID、小火箭共享账号与免费海外苹果 ID 获取平台","inLanguage":"zh-CN","potentialAction":{"@type":"SearchAction","target":"https://kjdid.com/?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"WebPage","@id":"https://kjdid.com/#webpage","url":"https://kjdid.com/","name":"美区港区 Apple ID 与小火箭共享账号 | 免费苹果ID实时更新 - 科技岛","isPartOf":{"@id":"https://kjdid.com/#website"},"description":"【科技岛 kjdid.com】提供免费美区港区 Apple ID 与小火箭共享账号！实时更新美区/港区/日区/台区等 iOS 账号及 Shadowrocket 账号，支持 2FA 验证码在线提取。","inLanguage":"zh-CN"},{"@type":"FAQPage","@id":"https://kjdid.com/#faq","mainEntity":[{"@type":"Question","name":"科技岛提供的美区港区 Apple ID 是免费的吗？","acceptedAnswer":{"@type":"Answer","text":"是的，科技岛（kjdid.com）每日实时更新美区、港区、日区、台区等公共共享 Apple ID，全站免费开放使用。"}},{"@type":"Question","name":"如何获取小火箭（Shadowrocket）共享账号？","acceptedAnswer":{"@type":"Answer","text":"您可以在科技岛平台直接获取已购买小火箭应用（Shadowrocket）的海外 Apple ID，登录 App Store 即可免费下载。"}},{"@type":"Question","name":"共享苹果账号提示需要 2FA 验证码怎么办？","acceptedAnswer":{"@type":"Answer","text":"科技岛提供配套的在线 2FA 验证码提取工具，输入账号对应的密钥即可实时获取 6 位双重认证验证码。"}}]},{"@type":"Organization","@id":"https://kjdid.com/#organization","name":"科技岛","url":"https://kjdid.com/","logo":{"@type":"ImageObject","url":"https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"}}]}</script>
 <style>
-/* 🌟 1. 彻底清爽前台：将 Gmeek 默认的旧标题、副标题、正文多余文本全部隐藏 */
+/* 🌟 1. 彻底隐藏前台不需要的默认标题、副标题 */
 .title-left, .blogTitle, #subTitle, .subTitle, #subtitle, .subtitle, [class*="subTitle"], [id*="subTitle"], .site-subtitle {
     display: none !important;
     visibility: hidden !important;
@@ -41,7 +41,7 @@
     pointer-events: none !important;
 }
 
-/* 🌟 2. 静态 H1 绝对隐藏样式：前台不显示，但源码静态检测100%通过 */
+/* 🌟 2. 静态 H1 绝对隐藏样式：前台不显示，但源码静态检测 100% 通过 */
 .seo-hidden-h1 {
     position: absolute !important;
     width: 1px !important;
@@ -209,9 +209,86 @@ h1.pro-brand-title, .pro-brand-title {
 .pro-notice-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
 .pro-notice-badge1 { background: linear-gradient(135deg, #7c3aed, #4f46e5); color: #fff; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 5px; }
 .pro-notice-badge2 { background: rgba(255, 255, 255, 0.1); color: #c084fc; font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 5px; }
-.pro-notice-body { font-size: 12.5px !important; line-height: 1.65 !important; color: #cbd5e1 !important; }
+.pro-notice-body { font-size: 12.5px !important; line-height: 1.65 !important; color: #cbd5e1 !important;
+}
 </style>
-<h1 class="seo-hidden-h1">美区港区 Apple ID 与小火箭共享账号 | 免费苹果ID实时更新 - 科技岛</h1>
+
+<script>
+(function() {
+    if (window.__PRO_THEME_INITED__) return;
+    window.__PRO_THEME_INITED__ = true;
+
+    function cleanUI() {
+        var subEls = document.querySelectorAll('#subTitle, .subTitle, #subtitle, .subtitle, [class*="subTitle"], [id*="subTitle"], .site-subtitle');
+        subEls.forEach(function(el) {
+            el.style.setProperty('display', 'none', 'important');
+            el.style.setProperty('height', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
+        });
+
+        // 🌟 动态注入静态 H1 标签，供静态 SEO 工具检测，前台完全隐藏
+        if (!document.getElementById('seoH1Tag')) {
+            var h1 = document.createElement('h1');
+            h1.id = 'seoH1Tag';
+            h1.className = 'seo-hidden-h1';
+            h1.innerText = '美区港区 Apple ID 与小火箭共享账号 | 免费苹果ID实时更新 - 科技岛';
+            document.body.insertBefore(h1, document.body.firstChild);
+        }
+
+        var footer = document.getElementById('footer');
+        if (footer) {
+            footer.innerHTML = 'Copyright © 2026 <a href="https://kjdid.com/">科技岛</a><br><span style="font-size: 12px; color: #888;">Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>';
+        }
+    }
+
+    function initProTheme() {
+        let headerContainer = document.getElementById("header") || document.querySelector(".subnav");
+        if (headerContainer) {
+            let searchBox = document.querySelector(".subnav-search") || document.querySelector("div[search]");
+            if (searchBox && searchBox.parentNode !== headerContainer) {
+                headerContainer.appendChild(searchBox);
+            }
+
+            if (!document.getElementById("proBrandCapsule")) {
+                let capsule = document.createElement("a");
+                capsule.id = "proBrandCapsule";
+                capsule.href = "https://kjdid.com";
+                capsule.className = "pro-brand-capsule";
+                capsule.innerHTML = '<img src="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png" class="avatar" alt="科技岛图标"><div class="pro-brand-text"><h1 class="pro-brand-title">科技岛</h1><span class="pro-brand-subtitle">GLOBAL STORE</span></div>';
+                
+                let oldAvatar = document.getElementById("avatarImg") || document.querySelector(".avatar");
+                if (oldAvatar && oldAvatar.parentNode !== capsule) {
+                    oldAvatar.remove();
+                }
+                headerContainer.insertBefore(capsule, headerContainer.firstChild);
+            }
+
+            if (!document.getElementById("proNoticeCard")) {
+                let noticeCard = document.createElement("div");
+                noticeCard.id = "proNoticeCard";
+                noticeCard.className = "pro-notice-card";
+                noticeCard.innerHTML = '<div class="pro-notice-header"><span class="pro-notice-badge1">📢 系统公告</span><span class="pro-notice-badge2">平台指南</span></div><div class="pro-notice-body">欢迎来到科技岛（kjdid.com）！我们为您提供免费稳定的美区港区 Apple ID、小火箭共享账号（Shadowrocket）及海外苹果共享 ID。平台支持在线提取 2FA 双重认证验证码，为您提供安全便捷的账号获取与 iOS 软件下载服务！</div>';
+                
+                if (headerContainer.parentNode) {
+                    headerContainer.insertAdjacentElement('afterend', noticeCard);
+                }
+            }
+        }
+        cleanUI();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { initProTheme(); cleanUI(); });
+    } else {
+        initProTheme();
+        cleanUI();
+    }
+    window.addEventListener('load', cleanUI);
+    setTimeout(cleanUI, 300);
+    setTimeout(cleanUI, 1000);
+    setTimeout(cleanUI, 2500);
+})();
+</script>
     <link rel="icon" href="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"><script>
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
