@@ -283,13 +283,11 @@ body {
     window.__PRO_THEME_INITED__ = true;
 
     function cleanUI() {
-        // 1. 深度遍历并暴力抹杀所有可能包含副标题的元素或包含特定文字的段落
         var subEls = document.querySelectorAll('#subTitle, .subTitle, #subtitle, .subtitle, [class*="subTitle"], [id*="subTitle"], .site-subtitle');
         subEls.forEach(function(el) {
-            el.remove(); // 直接从 DOM 树中物理移除
+            el.remove();
         });
 
-        // 遍历所有普通 p 标签或 div，如果内容包含你的 subTitle 关键字，直接移除，防止前台裸露显示
         var allTags = document.querySelectorAll('p, div, span');
         allTags.forEach(function(el) {
             if (el.children.length === 0 && el.innerText && el.innerText.includes('是专业的免费苹果ID共享与小火箭')) {
