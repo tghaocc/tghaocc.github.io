@@ -1,6 +1,6 @@
-# 苹果ID共享 | 免费美区/港区Apple ID与小火箭账号 - 科技岛 :link: https://kjdid.com 
-### :page_facing_up: [1](https://kjdid.com/tag.html) 
+# 免费苹果ID共享 - 美区港区海外 Apple ID 与小火箭账号 - 科技岛 :link: https://tghaocc.github.io 
+### :page_facing_up: [1](https://tghaocc.github.io/tag.html) 
 ### :speech_balloon: 0 
 ### :hibiscus: 4 
-### :alarm_clock: 2026-09-26 05:26:35 
+### :alarm_clock: 2026-09-26 05:45:54 
 ### Powered by :heart: [Gmeek](https://github.com/Meekdai/Gmeek)
