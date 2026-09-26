@@ -276,7 +276,7 @@ body {
     border: 1px solid rgba(192, 132, 252, 0.4) !important;
     border-radius: 18px !important;
     padding: 16px 20px !important;
-    margin: 16px 0 20px 0 !important;
+    margin: 16px 0 10px 0 !important;
     color: #f3e8ff !important;
     box-shadow: 0 10px 35px rgba(147, 51, 234, 0.25) !important;
     position: relative;
@@ -301,6 +301,60 @@ body {
 .pro-notice-badge1 { background: linear-gradient(135deg, #9333ea, #ec4899); color: #fff; font-size: 11.5px; font-weight: 700; padding: 3.5px 12px; border-radius: 7px; box-shadow: 0 2px 10px rgba(236, 72, 153, 0.4); }
 .pro-notice-badge2 { background: rgba(255, 255, 255, 0.12); color: #f472b6; font-size: 11.5px; font-weight: 600; padding: 3.5px 10px; border-radius: 7px; }
 .pro-notice-body { font-size: 13.5px !important; line-height: 1.75 !important; color: #f5d0fe !important; }
+
+/* 🌟 公告下方三个快捷按钮专属美化样式（完美融合赛博霓虹风格） */
+.pro-action-buttons {
+    display: flex !important;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+.pro-action-btn {
+    flex: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 10px 8px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(168, 85, 247, 0.3) !important;
+    border-radius: 12px !important;
+    color: #581c87 !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.08) !important;
+    backdrop-filter: blur(12px) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+}
+[data-color-mode="dark"] .pro-action-btn {
+    background: rgba(23, 21, 51, 0.8) !important;
+    border-color: rgba(192, 132, 252, 0.35) !important;
+    color: #f5d0fe !important;
+    box-shadow: 0 4px 20px rgba(147, 51, 234, 0.2) !important;
+}
+.pro-action-btn:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    border-color: #e879f9 !important;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(236, 72, 153, 0.15)) !important;
+    color: #c084fc !important;
+    box-shadow: 0 0 20px rgba(232, 121, 249, 0.4) !important;
+}
+.pro-action-btn svg {
+    width: 15px !important;
+    height: 15px !important;
+    fill: currentColor !important;
+    flex-shrink: 0 !important;
+}
+@media (max-width: 480px) {
+    .pro-action-btn {
+        font-size: 12px !important;
+        padding: 8px 4px !important;
+    }
+}
 
 /* 文章列表与容器微调美化 */
 .markdown-body {
@@ -382,13 +436,32 @@ body {
                 headerContainer.appendChild(searchBox);
             }
 
-            // 完整恢复：在首页顶部自动注入带有流光特效的系统公告卡片
+            // 完整恢复：在首页顶部自动注入带有流光特效的系统公告卡片及下方的三个快捷按钮
             if (!document.getElementById("proNoticeCard") && window.location.pathname === "/") {
                 let noticeCard = document.createElement("div");
                 noticeCard.id = "proNoticeCard";
                 noticeCard.className = "pro-notice-card";
                 noticeCard.innerHTML = '<div class="pro-notice-header"><span class="pro-notice-badge1">⚡ 实时状态</span><span class="pro-notice-badge2">萌新指引</span></div><div class="pro-notice-body">欢迎来到科技岛（kjdid.com）！本站每日实时更新免账号锁定的美区、港区、日区、台区等全球热门海外 Apple ID 共享与小火箭（Shadowrocket）账号。全站支持在线提取 2FA 双重认证验证码，助您安全、极速、无障碍畅玩全球 App Store！</div>';
                 headerContainer.appendChild(noticeCard);
+
+                // 自动注入三个整齐平铺的快捷按钮（可按需修改 href 链接）
+                let actionButtons = document.createElement("div");
+                actionButtons.id = "proActionButtons";
+                actionButtons.className = "pro-action-buttons";
+                actionButtons.innerHTML = 
+                    '<a href="#" class="pro-action-btn">' +
+                        '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>' +
+                        '<span>新手必看</span>' +
+                    '</a>' +
+                    '<a href="#" class="pro-action-btn">' +
+                        '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1016 0A8 8 0 000 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path></svg>' +
+                        '<span>常见问题</span>' +
+                    '</a>' +
+                    '<a href="#" class="pro-action-btn">' +
+                        '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H8.061l-2.574 2.573A1.458 1.458 0 013 15.5V14H1.75A1.75 1.75 0 010 12.25v-8.5C0 2.784.784 2 1.75 2zM1.5 3.75v8.5c0 .138.112.25.25.25H4.5v1.879l1.939-1.938.106-.041h7.705c.138 0 .25-.112.25-.25v-8.5a.25.25 0 00-.25-.25H1.75a.25.25 0 00-.25.25z"></path></svg>' +
+                        '<span>联系客服</span>' +
+                    '</a>';
+                headerContainer.appendChild(actionButtons);
             }
         }
         cleanUI();
