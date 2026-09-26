@@ -484,26 +484,25 @@ body {
     setTimeout(initProTheme, 300);
     setTimeout(initProTheme, 1000);
 
-    // ⚡ 增强版：精准扫描并隐藏 Gmeek 列表里包含 hidden 文本的行元素
+    // ⚡ 绝对精准的隐藏脚本：只针对包含 hidden 标签的单行文章条目（a 链接或列表子项）
     function hideHiddenPosts() {
-        const allElements = document.querySelectorAll('div, tr, li, a');
-        allElements.forEach(el => {
-            // 如果这个元素内部文本包含 hidden，并且它本身比较像是一个文章列表行
-            if (el.innerText && el.innerText.includes('hidden') && el.children.length <= 4) {
-                // 向上追溯到包含日期或标题的行容器并隐藏
-                let target = el;
-                for (let i = 0; i < 3; i++) {
-                    if (target.parentElement && (target.parentElement.tagName === 'BODY' || target.parentElement.classList.contains('markdown-body'))) break;
-                    if (target.parentElement) target = target.parentElement;
+        // 寻找所有带有标签或者文本的 span/a 元素，精准定位标签
+        var labels = document.querySelectorAll('a, span, div');
+        labels.forEach(function(el) {
+            // 判断是否是独立的小标签且内容为 hidden
+            if (el.innerText && el.innerText.trim() === 'hidden' && el.children.length === 0) {
+                // 向上寻找它的直属行容器（通常是带有 href 的 a 链接或者列表项）
+                var row = el.closest('a') || el.closest('tr') || el.closest('li');
+                if (row && row !== document.body) {
+                    row.style.display = 'none';
                 }
-                target.style.display = 'none';
             }
         });
     }
     document.addEventListener('DOMContentLoaded', hideHiddenPosts);
     window.addEventListener('load', hideHiddenPosts);
-    setTimeout(hideHiddenPosts, 400);
-    setTimeout(hideHiddenPosts, 1200);
+    setTimeout(hideHiddenPosts, 350);
+    setTimeout(hideHiddenPosts, 1000);
 })();
 </script>
     <link rel="icon" href="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"><script>
