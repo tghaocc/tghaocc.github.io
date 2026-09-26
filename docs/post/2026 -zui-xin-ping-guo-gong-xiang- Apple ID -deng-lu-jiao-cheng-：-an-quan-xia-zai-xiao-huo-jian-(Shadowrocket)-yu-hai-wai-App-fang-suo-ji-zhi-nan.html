@@ -64,25 +64,35 @@ body {
     border: 0 !important;
 }
 
-/* 顶栏架构：苹果弹性网格 */
+/* 顶栏与详情页强制单行布局重构 */
 #header, .subnav {
     display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    justify-content: space-between !important;
+    flex-direction: column !important;
     width: 100% !important;
     position: relative !important;
     padding-bottom: 16px !important;
     border-bottom: 1px solid rgba(168, 85, 247, 0.15) !important;
-    gap: 14px 0 !important;
+    gap: 12px !important;
+}
+
+/* JS重构后的顶部第一行容器：左侧Logo + 右侧功能按钮 */
+.pro-top-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 10px !important;
 }
 
 .title-right, .subnav-right {
     display: flex !important;
     align-items: center !important;
     justify-content: flex-end !important;
-    gap: 10px !important;
+    gap: 8px !important;
     margin: 0 !important;
+    flex-shrink: 0 !important;
 }
 
 /* 顶部功能按钮：二次元动感毛玻璃圆形外观 */
@@ -101,6 +111,7 @@ body {
     -webkit-backdrop-filter: blur(14px) !important;
     box-shadow: 0 4px 15px rgba(147, 51, 234, 0.08) !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    flex-shrink: 0 !important;
 }
 [data-color-mode="dark"] #buttonHome, [data-color-mode="dark"] #buttonSearch, [data-color-mode="dark"] #buttonTheme, [data-color-mode="dark"] a.btn-invisible.circle {
     background: rgba(23, 21, 51, 0.65) !important;
@@ -127,7 +138,7 @@ body {
 .pro-brand-capsule {
     display: inline-flex !important;
     align-items: center;
-    padding: 5px 16px 5px 6px !important;
+    padding: 5px 12px 5px 6px !important;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(243, 232, 255, 0.9) 100%) !important;
     border: 1.5px solid rgba(168, 85, 247, 0.35) !important;
     border-radius: 32px !important;
@@ -137,6 +148,8 @@ body {
     box-sizing: border-box !important;
     backdrop-filter: blur(12px) !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
 }
 [data-color-mode="dark"] .pro-brand-capsule {
     background: linear-gradient(135deg, rgba(23, 21, 51, 0.85) 0%, rgba(49, 46, 129, 0.7) 100%) !important;
@@ -153,17 +166,20 @@ body {
     height: 28px !important;
     border-radius: 50% !important;
     object-fit: cover;
-    margin-right: 9px !important;
+    margin-right: 7px !important;
     border: 2px solid #a855f7 !important;
+    flex-shrink: 0 !important;
 }
 .pro-brand-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     line-height: 1.15;
+    min-width: 0 !important;
+    overflow: hidden !important;
 }
 .pro-brand-title {
-    font-size: 14.5px !important;
+    font-size: 14px !important;
     font-weight: 800 !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -171,16 +187,31 @@ body {
     background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 .pro-brand-subtitle {
     font-size: 8px !important;
     font-weight: 700 !important;
     color: #7c3aed !important;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     margin-top: 2px;
+    white-space: nowrap !important;
 }
 [data-color-mode="dark"] .pro-brand-subtitle {
     color: #f472b6 !important;
+}
+
+/* 详情页文章标题美化：使其独立独占一行，紧跟在顶栏下方 */
+#header h1:not(.seo-main-h1), .subnav h1:not(.seo-main-h1), .post-title {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    line-height: 1.4 !important;
+    color: var(--color-fg-default) !important;
+    margin: 4px 0 0 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
 }
 
 /* 赛博全宽动感搜索栏 */
@@ -237,40 +268,6 @@ body {
     transform: scale(1.02);
 }
 
-/* 带有流光扫描特效的霓虹系统公告卡片 */
-.pro-notice-card {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    background: linear-gradient(135deg, #171533 0%, #291152 50%, #3b0764 100%) !important;
-    border: 1px solid rgba(192, 132, 252, 0.4) !important;
-    border-radius: 18px !important;
-    padding: 16px 20px !important;
-    margin: 16px 0 20px 0 !important;
-    color: #f3e8ff !important;
-    box-shadow: 0 10px 35px rgba(147, 51, 234, 0.25) !important;
-    position: relative;
-    overflow: hidden;
-}
-.pro-notice-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: cyberShine 6s infinite;
-}
-@keyframes cyberShine {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
-}
-.pro-notice-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.pro-notice-badge1 { background: linear-gradient(135deg, #9333ea, #ec4899); color: #fff; font-size: 11.5px; font-weight: 700; padding: 3.5px 12px; border-radius: 7px; box-shadow: 0 2px 10px rgba(236, 72, 153, 0.4); }
-.pro-notice-badge2 { background: rgba(255, 255, 255, 0.12); color: #f472b6; font-size: 11.5px; font-weight: 600; padding: 3.5px 10px; border-radius: 7px; }
-.pro-notice-body { font-size: 13.5px !important; line-height: 1.75 !important; color: #f5d0fe !important; }
-
 /* 文章列表与容器微调美化 */
 .markdown-body {
     border-radius: 18px !important;
@@ -312,50 +309,56 @@ body {
                 headerContainer.insertBefore(h1El, headerContainer.firstChild);
             }
 
+            // 核心：在JS中动态重构顶部结构，确保 Logo 和 右侧按钮永远在第一行
+            if (!document.getElementById("proTopRow")) {
+                let topRow = document.createElement("div");
+                topRow.id = "proTopRow";
+                topRow.className = "pro-top-row";
+                
+                let rightBtns = headerContainer.querySelector(".title-right, .subnav-right");
+                if (!rightBtns) {
+                    let btns = headerContainer.querySelectorAll('#buttonHome, #buttonSearch, #buttonTheme, a.btn-invisible');
+                    if (btns.length > 0) {
+                        rightBtns = document.createElement("div");
+                        rightBtns.className = "title-right";
+                        btns.forEach(b => rightBtns.appendChild(b));
+                    }
+                }
+
+                let capsule = document.getElementById("proBrandCapsule");
+                if (!capsule) {
+                    capsule = document.createElement("a");
+                    capsule.id = "proBrandCapsule";
+                    capsule.href = "https://kjdid.com";
+                    capsule.className = "pro-brand-capsule";
+                    capsule.innerHTML = '<img src="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png" class="avatar" alt="科技岛图标"><div class="pro-brand-text"><span class="pro-brand-title">科技岛</span><span class="pro-brand-subtitle">CYBER STORE</span></div>';
+                }
+                
+                let oldAvatar = document.getElementById("avatarImg") || headerContainer.querySelector(":scope > .avatar");
+                if (oldAvatar) oldAvatar.remove();
+
+                topRow.appendChild(capsule);
+                if (rightBtns) topRow.appendChild(rightBtns);
+                
+                headerContainer.insertBefore(topRow, headerContainer.firstChild);
+            }
+
             let searchBox = document.querySelector(".subnav-search") || document.querySelector("div[search]");
             if (searchBox && searchBox.parentNode !== headerContainer) {
                 headerContainer.appendChild(searchBox);
-            }
-
-            if (!document.getElementById("proBrandCapsule")) {
-                let capsule = document.createElement("a");
-                capsule.id = "proBrandCapsule";
-                capsule.href = "https://kjdid.com";
-                capsule.className = "pro-brand-capsule";
-                capsule.innerHTML = '<img src="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png" class="avatar" alt="科技岛图标"><div class="pro-brand-text"><span class="pro-brand-title">科技岛</span><span class="pro-brand-subtitle">CYBER STORE</span></div>';
-                
-                let oldAvatar = document.getElementById("avatarImg") || document.querySelector(".avatar");
-                if (oldAvatar && oldAvatar.parentNode !== capsule) {
-                    oldAvatar.remove();
-                }
-                headerContainer.insertBefore(capsule, headerContainer.firstChild);
-            }
-
-            if (!document.getElementById("proNoticeCard")) {
-                let noticeCard = document.createElement("div");
-                noticeCard.id = "proNoticeCard";
-                noticeCard.className = "pro-notice-card";
-                noticeCard.innerHTML = '<div class="pro-notice-header"><span class="pro-notice-badge1">⚡ 实时状态</span><span class="pro-notice-badge2">萌新指引</span></div><div class="pro-notice-body">欢迎来到科技岛（kjdid.com）！本站每日实时更新免账号锁定的美区、港区、日区、台区等全球热门海外 Apple ID 共享与小火箭（Shadowrocket）账号。全站支持在线提取 2FA 双重认证验证码，助您安全、极速、无障碍畅玩全球 App Store！</div>';
-                
-                if (headerContainer.parentNode) {
-                    headerContainer.insertAdjacentElement('afterend', noticeCard);
-                }
             }
         }
         cleanUI();
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() { initProTheme(); cleanUI(); });
+        document.addEventListener('DOMContentLoaded', initProTheme);
     } else {
         initProTheme();
-        cleanUI();
     }
-    window.addEventListener('load', cleanUI);
-    setTimeout(cleanUI, 100);
-    setTimeout(cleanUI, 300);
-    setTimeout(cleanUI, 800);
-    setTimeout(cleanUI, 1500);
+    window.addEventListener('load', initProTheme);
+    setTimeout(initProTheme, 300);
+    setTimeout(initProTheme, 1000);
 })();
 </script>
     <link rel="icon" href="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"><script>
