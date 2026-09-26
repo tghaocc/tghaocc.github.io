@@ -302,22 +302,6 @@ body {
 .pro-notice-badge2 { background: rgba(255, 255, 255, 0.12); color: #f472b6; font-size: 11.5px; font-weight: 600; padding: 3.5px 10px; border-radius: 7px; }
 .pro-notice-body { font-size: 13.5px !important; line-height: 1.75 !important; color: #f5d0fe !important; }
 
-/* 🛠️【新增】将文章列表前面的默认文档/书本图标替换为您的头像 */
-.octicon.octicon-book {
-    display: inline-block !important;
-    width: 22px !important;
-    height: 22px !important;
-    background-image: url('https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    border-radius: 50% !important;
-    border: 1.5px solid #a855f7 !important;
-    vertical-align: middle !important;
-}
-.octicon.octicon-book path {
-    display: none !important;
-}
-
 /* 文章列表与容器微调美化 */
 .markdown-body {
     border-radius: 18px !important;
@@ -359,6 +343,7 @@ body {
                 headerContainer.insertBefore(h1El, headerContainer.firstChild);
             }
 
+            // 核心：在JS中动态重构顶部结构，确保 Logo 和 右侧按钮永远在第一行
             if (!document.getElementById("proTopRow")) {
                 let topRow = document.createElement("div");
                 topRow.id = "proTopRow";
@@ -397,6 +382,7 @@ body {
                 headerContainer.appendChild(searchBox);
             }
 
+            // 完整恢复：在首页顶部自动注入带有流光特效的系统公告卡片
             if (!document.getElementById("proNoticeCard") && window.location.pathname === "/") {
                 let noticeCard = document.createElement("div");
                 noticeCard.id = "proNoticeCard";
@@ -422,8 +408,8 @@ body {
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛 search page">
-<title>免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛 - Tag</title>
+<meta name="description" content="免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭共享账号 - 科技岛 search page">
+<title>免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭共享账号 - 科技岛 - Tag</title>
 
 </head>
 <style>
@@ -488,7 +474,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <nav class="SideNav"></nav>
 <div class="notFind" style="display:none;font-size:24px;margin:8px;">Not Find</div>
 </div>
-    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://tghaocc.github.io">免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛</a></div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://tghaocc.github.io">免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭共享账号 - 科技岛</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -648,7 +634,7 @@ function setClassDisplay(label){
     let lists = document.getElementsByClassName("lists");
     let tagTitle = document.getElementsByClassName("tagTitle")[0];
     tagTitle.innerHTML="Tag #"+label;
-    document.title=label+" - 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛";
+    document.title=label+" - 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭共享账号 - 科技岛";
     document.getElementsByClassName("subnav-search-input")[0].value='';
     if(label=="All"){
         for(let i = 0; i < lists.length; i++){lists[i].style.display='block';}
@@ -676,8 +662,8 @@ function searchShow(){
     let tagTitle = document.getElementsByClassName("tagTitle")[0];
     let searchInput = document.getElementsByClassName("subnav-search-input")[0].value;
     tagTitle.innerHTML="Search #"+searchInput;
-    if(searchInput==''){document.title="Search - 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛";}
-    else{document.title=searchInput+" - 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛";}
+    if(searchInput==''){document.title="Search - 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭共享账号 - 科技岛";}
+    else{document.title=searchInput+" - 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭共享账号 - 科技岛";}
     let a=0;
     window.location.hash="#"+(searchInput);
     for(let i = 0; i < lists.length; i++){
