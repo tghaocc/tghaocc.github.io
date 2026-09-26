@@ -1,4 +1,4 @@
-# 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛 :link: https://tghaocc.github.io 
+# 免费苹果ID共享 - 美区/港区/日区等海外 Apple ID 与小火箭账号 - 科技岛 :link: https://kjdid.com 
 ### :page_facing_up: [4](https://kjdid.com) 
 ### :speech_balloon: 0 
 ### :hibiscus: 1398 
