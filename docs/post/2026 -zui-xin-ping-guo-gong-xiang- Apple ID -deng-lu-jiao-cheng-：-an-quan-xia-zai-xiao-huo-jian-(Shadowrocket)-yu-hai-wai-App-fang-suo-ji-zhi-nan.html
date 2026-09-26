@@ -203,7 +203,7 @@ body {
     color: #f472b6 !important;
 }
 
-/* 详情页文章标题美化：使其独立独占一行，紧跟在顶栏下方 */
+/* 详情页文章标题美化 */
 #header h1:not(.seo-main-h1), .subnav h1:not(.seo-main-h1), .post-title {
     font-size: 20px !important;
     font-weight: 800 !important;
@@ -267,6 +267,40 @@ body {
     opacity: 0.92;
     transform: scale(1.02);
 }
+
+/* 带有流光扫描特效的霓虹系统公告卡片 */
+.pro-notice-card {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(135deg, #171533 0%, #291152 50%, #3b0764 100%) !important;
+    border: 1px solid rgba(192, 132, 252, 0.4) !important;
+    border-radius: 18px !important;
+    padding: 16px 20px !important;
+    margin: 16px 0 20px 0 !important;
+    color: #f3e8ff !important;
+    box-shadow: 0 10px 35px rgba(147, 51, 234, 0.25) !important;
+    position: relative;
+    overflow: hidden;
+}
+.pro-notice-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: cyberShine 6s infinite;
+}
+@keyframes cyberShine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+.pro-notice-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.pro-notice-badge1 { background: linear-gradient(135deg, #9333ea, #ec4899); color: #fff; font-size: 11.5px; font-weight: 700; padding: 3.5px 12px; border-radius: 7px; box-shadow: 0 2px 10px rgba(236, 72, 153, 0.4); }
+.pro-notice-badge2 { background: rgba(255, 255, 255, 0.12); color: #f472b6; font-size: 11.5px; font-weight: 600; padding: 3.5px 10px; border-radius: 7px; }
+.pro-notice-body { font-size: 13.5px !important; line-height: 1.75 !important; color: #f5d0fe !important; }
 
 /* 文章列表与容器微调美化 */
 .markdown-body {
@@ -346,6 +380,15 @@ body {
             let searchBox = document.querySelector(".subnav-search") || document.querySelector("div[search]");
             if (searchBox && searchBox.parentNode !== headerContainer) {
                 headerContainer.appendChild(searchBox);
+            }
+
+            // 完整恢复：在首页顶部自动注入带有流光特效的系统公告卡片
+            if (!document.getElementById("proNoticeCard") && window.location.pathname === "/") {
+                let noticeCard = document.createElement("div");
+                noticeCard.id = "proNoticeCard";
+                noticeCard.className = "pro-notice-card";
+                noticeCard.innerHTML = '<div class="pro-notice-header"><span class="pro-notice-badge1">⚡ 实时状态</span><span class="pro-notice-badge2">萌新指引</span></div><div class="pro-notice-body">欢迎来到科技岛（kjdid.com）！本站每日实时更新免账号锁定的美区、港区、日区、台区等全球热门海外 Apple ID 共享与小火箭（Shadowrocket）账号。全站支持在线提取 2FA 双重认证验证码，助您安全、极速、无障碍畅玩全球 App Store！</div>';
+                headerContainer.appendChild(noticeCard);
             }
         }
         cleanUI();
