@@ -462,7 +462,7 @@ body {
                         '<span>🔥 账号商城</span>' +
                     '</a>' +
                     '<a href="https://kjdid.com/tag.html" class="pro-action-btn">' +
-                        '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5zm1.75-.25a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25v-8.5a.25.25 0 00-.25-.25H1.75zM3 5.5a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 013 5.5zm0 3a.75.75 0 01.75-.75h5.5a.75.75 0 010 1.5h-5.5A.75.75 0 013 8.5z"></path></svg>' +
+                        '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5zm1.75-.25a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25v-8.5a.25.25 00-.25-.25H1.75zM3 5.5a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 013 5.5zm0 3a.75.75 0 01.75-.75h5.5a.75.75 0 010 1.5h-5.5A.75.75 0 013 8.5z"></path></svg>' +
                         '<span>📖 文章中心</span>' +
                     '</a>' +
                     '<a href="https://qm.qq.com/q/RVzPw7XAAu" class="pro-action-btn" target="_blank">' +
@@ -484,15 +484,26 @@ body {
     setTimeout(initProTheme, 300);
     setTimeout(initProTheme, 1000);
 
-    // ⚡ 核心追加：自动扫描并隐藏带有 hidden 标签的文章
-    document.addEventListener('DOMContentLoaded', function() {
-        const rows = document.querySelectorAll('tr, .post-item, li');
-        rows.forEach(row => {
-            if (row.innerHTML.includes('hidden')) {
-                row.style.display = 'none';
+    // ⚡ 增强版：精准扫描并隐藏 Gmeek 列表里包含 hidden 文本的行元素
+    function hideHiddenPosts() {
+        const allElements = document.querySelectorAll('div, tr, li, a');
+        allElements.forEach(el => {
+            // 如果这个元素内部文本包含 hidden，并且它本身比较像是一个文章列表行
+            if (el.innerText && el.innerText.includes('hidden') && el.children.length <= 4) {
+                // 向上追溯到包含日期或标题的行容器并隐藏
+                let target = el;
+                for (let i = 0; i < 3; i++) {
+                    if (target.parentElement && (target.parentElement.tagName === 'BODY' || target.parentElement.classList.contains('markdown-body'))) break;
+                    if (target.parentElement) target = target.parentElement;
+                }
+                target.style.display = 'none';
             }
         });
-    });
+    }
+    document.addEventListener('DOMContentLoaded', hideHiddenPosts);
+    window.addEventListener('load', hideHiddenPosts);
+    setTimeout(hideHiddenPosts, 400);
+    setTimeout(hideHiddenPosts, 1200);
 })();
 </script>
     <link rel="icon" href="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"><script>
