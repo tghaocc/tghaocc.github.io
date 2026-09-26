@@ -408,7 +408,6 @@ body {
                 headerContainer.insertBefore(h1El, headerContainer.firstChild);
             }
 
-            // 核心：在JS中动态重构顶部结构，确保 Logo 和 右侧按钮永远在第一行
             if (!document.getElementById("proTopRow")) {
                 let topRow = document.createElement("div");
                 topRow.id = "proTopRow";
@@ -430,7 +429,7 @@ body {
                     capsule.id = "proBrandCapsule";
                     capsule.href = "https://kjdid.com";
                     capsule.className = "pro-brand-capsule";
-                    capsule.innerHTML = '<img src="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png" class="avatar" alt="科技岛图标"><div class="pro-brand-text"><span class="pro-brand-title">科技岛</span><span class="pro-brand-subtitle">CYBER STORE</span></div>';
+                    capsule.innerHTML = '<img src="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png" class="avatar" alt="科技岛图标"><div class="pro-brand-text"><span class="pro-brand-title">TG海外号专营</span><span class="pro-brand-subtitle">CYBER STORE</span></div>';
                 }
                 
                 let oldAvatar = document.getElementById("avatarImg") || headerContainer.querySelector(":scope > .avatar");
@@ -447,7 +446,6 @@ body {
                 headerContainer.appendChild(searchBox);
             }
 
-            // 完整恢复：在首页顶部自动注入公告及下方的三个功能按钮
             if (!document.getElementById("proNoticeCard") && window.location.pathname === "/") {
                 let noticeCard = document.createElement("div");
                 noticeCard.id = "proNoticeCard";
@@ -455,7 +453,6 @@ body {
                 noticeCard.innerHTML = '<div class="pro-notice-header"><span class="pro-notice-badge1">⚡ 实时状态</span><span class="pro-notice-badge2">萌新指引</span></div><div class="pro-notice-body">欢迎来到科技岛（kjdid.com）！本站每日实时更新免账号锁定的美区、港区、日区、台区等全球热门海外 Apple ID 共享与小火箭（Shadowrocket）账号。全站支持在线提取 2FA 双重认证验证码，助您安全, 极速, 无障碍畅玩全球 App Store！</div>';
                 headerContainer.appendChild(noticeCard);
 
-                // 注入三个按钮（1. 账号商城已完美嵌入您的完整 HTML 链接 2. 文章中心 3. 联系客服）
                 let actionButtons = document.createElement("div");
                 actionButtons.id = "proActionButtons";
                 actionButtons.className = "pro-action-buttons";
@@ -464,7 +461,7 @@ body {
                         '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0114.25 15H1.75A1.75 1.75 0 010 13.25V2.75zM1.75 2.5a.25.25 0 00-.25.25v2.5h13V2.75a.25.25 0 00-.25-.25H1.75zM14.5 7h-13v6.25c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V7z"></path></svg>' +
                         '<span>🔥 账号商城</span>' +
                     '</a>' +
-                    '<a href="https://你的文章中心链接或标签" class="pro-action-btn">' +
+                    '<a href="https://kjdid.com/tag.html" class="pro-action-btn">' +
                         '<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5zm1.75-.25a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25v-8.5a.25.25 0 00-.25-.25H1.75zM3 5.5a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 013 5.5zm0 3a.75.75 0 01.75-.75h5.5a.75.75 0 010 1.5h-5.5A.75.75 0 013 8.5z"></path></svg>' +
                         '<span>📖 文章中心</span>' +
                     '</a>' +
@@ -486,6 +483,16 @@ body {
     window.addEventListener('load', initProTheme);
     setTimeout(initProTheme, 300);
     setTimeout(initProTheme, 1000);
+
+    // ⚡ 核心追加：自动扫描并隐藏带有 hidden 标签的文章
+    document.addEventListener('DOMContentLoaded', function() {
+        const rows = document.querySelectorAll('tr, .post-item, li');
+        rows.forEach(row => {
+            if (row.innerHTML.includes('hidden')) {
+                row.style.display = 'none';
+            }
+        });
+    });
 })();
 </script>
     <link rel="icon" href="https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png"><script>
