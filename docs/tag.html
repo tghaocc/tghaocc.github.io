@@ -397,26 +397,6 @@ body {
         }
     }
 
-    // 自动隐藏带有 [hidden] 标记的文章
-    function hideMarkedPosts() {
-        var postItems = document.querySelectorAll('.sideNav, .post-list-item, tr, li');
-        postItems.forEach(function(item) {
-            var text = item.innerText || item.textContent;
-            if (text && text.includes('[hidden]')) {
-                item.style.display = 'none';
-                item.style.visibility = 'hidden';
-            }
-        });
-
-        var postTitle = document.querySelector('.post-title, h1');
-        if (postTitle && (postTitle.innerText || postTitle.textContent).includes('[hidden]')) {
-            var markdownBody = document.querySelector('.markdown-body');
-            if (markdownBody) {
-                markdownBody.style.display = 'none';
-            }
-        }
-    }
-
     function initProTheme() {
         let headerContainer = document.getElementById("header") || document.querySelector(".subnav");
         if (headerContainer) {
@@ -493,7 +473,6 @@ body {
             }
         }
         cleanUI();
-        hideMarkedPosts();
     }
 
     if (document.readyState === 'loading') {
