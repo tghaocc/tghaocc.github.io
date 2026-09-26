@@ -302,6 +302,22 @@ body {
 .pro-notice-badge2 { background: rgba(255, 255, 255, 0.12); color: #f472b6; font-size: 11.5px; font-weight: 600; padding: 3.5px 10px; border-radius: 7px; }
 .pro-notice-body { font-size: 13.5px !important; line-height: 1.75 !important; color: #f5d0fe !important; }
 
+/* 🛠️【新增】将文章列表前面的默认文档/书本图标替换为您的头像 */
+.octicon.octicon-book {
+    display: inline-block !important;
+    width: 22px !important;
+    height: 22px !important;
+    background-image: url('https://raw.githubusercontent.com/tghaocc/tghaocc.github.io/refs/heads/main/IMG_4794.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 50% !important;
+    border: 1.5px solid #a855f7 !important;
+    vertical-align: middle !important;
+}
+.octicon.octicon-book path {
+    display: none !important;
+}
+
 /* 文章列表与容器微调美化 */
 .markdown-body {
     border-radius: 18px !important;
@@ -343,7 +359,6 @@ body {
                 headerContainer.insertBefore(h1El, headerContainer.firstChild);
             }
 
-            // 核心：在JS中动态重构顶部结构，确保 Logo 和 右侧按钮永远在第一行
             if (!document.getElementById("proTopRow")) {
                 let topRow = document.createElement("div");
                 topRow.id = "proTopRow";
@@ -382,7 +397,6 @@ body {
                 headerContainer.appendChild(searchBox);
             }
 
-            // 完整恢复：在首页顶部自动注入带有流光特效的系统公告卡片
             if (!document.getElementById("proNoticeCard") && window.location.pathname === "/") {
                 let noticeCard = document.createElement("div");
                 noticeCard.id = "proNoticeCard";
